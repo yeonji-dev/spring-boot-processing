@@ -1,0 +1,26 @@
+# server
+server:
+  port: 2000
+  tomcat:
+    max-connections: 10000
+    max-http-form-post-size: 10MB
+---
+# spring default
+spring:
+  profiles:
+    active: dev
+
+---
+# mybatis setting
+#mybatis:
+#  type-aliases-package: com.yeonjidev.common.vo
+#  configuration:
+#    map-underscore-to-camel-case: true
+#    call-setters-on-nulls: true
+#    jdbc-type-for-null: null
+---
+spring:
+  servlet:
+    multipart:
+      max-file-size: 300MB
+      max-request-size: 300MB
