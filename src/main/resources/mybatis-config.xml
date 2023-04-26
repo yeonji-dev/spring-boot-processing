@@ -7,6 +7,6 @@
         <setting name="jdbcTypeForNull" value="NULL"/>
     </settings>
     <typeAliases>
-        <typeAlias type="com.yeonjidev.springbootproceccing.dto.CamelListMap" alias="camelMap"/>
+        <typeAlias type="com.yeonjidev.record.dto.CamelListMap" alias="camelMap"/>
     </typeAliases>
 </configuration>

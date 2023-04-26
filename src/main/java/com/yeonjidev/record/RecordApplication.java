@@ -1,13 +1,13 @@
-package com.yeonjidev.springbootproceccing;
+package com.yeonjidev.record;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringBootProceccingApplication {
+public class RecordApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringBootProceccingApplication.class, args);
+        SpringApplication.run(RecordApplication.class, args);
     }
 
 }

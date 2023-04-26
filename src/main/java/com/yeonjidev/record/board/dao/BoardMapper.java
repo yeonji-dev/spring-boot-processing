@@ -1,4 +1,4 @@
-package com.yeonjidev.springbootproceccing.board.dao;
+package com.yeonjidev.record.board.dao;
 
 import org.apache.ibatis.annotations.Mapper;
 

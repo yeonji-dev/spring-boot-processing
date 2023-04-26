@@ -1,10 +1,10 @@
-package com.yeonjidev.springbootproceccing;
+package com.yeonjidev.record;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SpringBootProceccingApplicationTests {
+class RecordApplicationTests {
 
     @Test
     void contextLoads() {

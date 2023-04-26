@@ -1,4 +1,4 @@
-package com.yeonjidev.springbootproceccing.dto;
+package com.yeonjidev.record.dto;
 
 import org.apache.commons.collections4.map.ListOrderedMap;
 

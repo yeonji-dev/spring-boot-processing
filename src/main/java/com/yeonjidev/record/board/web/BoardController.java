@@ -1,4 +1,4 @@
-package com.yeonjidev.springbootproceccing.board.web;
+package com.yeonjidev.record.board.web;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

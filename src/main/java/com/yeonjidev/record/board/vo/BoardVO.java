@@ -1,4 +1,4 @@
-package com.yeonjidev.springbootproceccing.board.vo;
+package com.yeonjidev.record.board.vo;
 
 import lombok.Data;
 
