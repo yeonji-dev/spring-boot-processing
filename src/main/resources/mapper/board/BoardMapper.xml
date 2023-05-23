@@ -1,5 +1,220 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yeonjidev.record.board.dao.BoardMapper">
+    <sql id="selectCompany">
+        select company_id,
+               company_name,
+               homepage,
+               estYr,
+               region,
+               address,
+               ceo_name,
+               resource,
+               credit,
+               category,
+               note,
+               reg_id,
+               reg_date,
+               update_id,
+               update_date
+        from company
+    </sql>
+    <select id="selectCompanyList" resultType="com.yeonjidev.record.board.vo.CompanyVO">
+        <include refid="selectCompany"></include>
+    </select>
 
+    <select id="selectCompanyInfo" parameterType="java.lang.Long" resultType="com.yeonjidev.record.board.vo.CompanyVO">
+        <include refid="selectCompany"></include>
+        where company_id = #{companyId}
+    </select>
+
+    <select id="selectFinanceList" parameterType="java.lang.Long" resultType="com.yeonjidev.record.board.vo.FinanceVO">
+        select company_id,
+               seq_no,
+               sttm_year,
+               sales,
+               income,
+               reg_id,
+               reg_date,
+               update_id,
+               update_date
+        from finance
+        where company_id = #{companyId}
+        order by seq_no
+    </select>
+
+    <select id="selectProductList" parameterType="java.lang.Long" resultType="com.yeonjidev.record.board.vo.ProductVO">
+        select company_id,
+               seq_no,
+               'PD' as parent,
+               product_name,
+               product_year,
+               category,
+               note,
+               reg_id,
+               reg_date,
+               update_id,
+               update_date
+        from product
+        where company_id = #{companyId}
+        order by product_year, seq_no
+    </select>
+
+    <select id="selectBusinessList" parameterType="java.lang.Long" resultType="com.yeonjidev.record.board.vo.BusinessVO">
+        select company_id,
+               seq_no,
+               'BS' as parent,
+               business_year,
+               content,
+               reg_id,
+               reg_date,
+               update_id,
+               update_date
+        from business
+        where company_id = #{companyId}
+        order by business_year, seq_no
+    </select>
+
+    <select id="selectAbilityList" parameterType="java.lang.Long" resultType="com.yeonjidev.record.board.vo.BusinessVO">
+        select company_id,
+               seq_no,
+               'AB' as parent,
+               content,
+               reg_id,
+               reg_date,
+               update_id,
+               update_date
+        from ability
+        where company_id = #{companyId}
+        order by seq_no
+    </select>
+
+    <select id="selectDepthList" parameterType="com.yeonjidev.record.board.vo.DepthVO" resultType="com.yeonjidev.record.board.vo.DepthVO">
+        select company_id,
+               parent,
+               parent_seq_no,
+               seq_no,
+               content,
+               reg_id,
+               reg_date,
+               update_id,
+               update_date
+        from company_depth
+        where company_id = #{companyId} and parent = #{parent} and parent_seq_no = #{parentSeqNo}
+    </select>
+
+    <update id="updateCompany">
+        update company
+        set
+            company_name = #{companyName},
+            homepage = #{homepage},
+            estYr = #{estYr},
+            region = #{region},
+            address = #{address},
+            ceo_name = #{ceoName},
+            resource = #{resource},
+            credit = #{credit},
+            category = #{category},
+            note = #{note},
+            update_id = #{updateId},
+            update_date = now()
+        where company_id = #{companyId}
+    </update>
+
+    <delete id="deleteFinance">
+        delete from finance where company_id = #{companyId}
+    </delete>
+
+    <delete id="deleteProduct">
+        delete from product where company_id = #{companyId}
+    </delete>
+
+    <delete id="deleteBusiness">
+        delete from business where company_id = #{companyId}
+    </delete>
+
+    <delete id="deleteAbility">
+        delete from ability where company_id = #{companyId}
+    </delete>
+
+    <delete id="deleteDepthList">
+        delete from company_depth where company_id = #{companyId}
+    </delete>
+
+    <insert id="insertFinance">
+        insert into finance
+        values (
+                   #{companyId},
+                   #{seqNo},
+                   #{sttmYear},
+                   #{sales,jdbcType=FLOAT},
+                   #{income,jdbcType=FLOAT},
+                   #{regId},
+                   now(),
+                   null,
+                   null
+               )
+    </insert>
+
+    <insert id="insertProduct">
+        insert into product
+        values (
+                   #{companyId},
+                   #{seqNo},
+                   #{productName},
+                   #{productYear},
+                   #{category},
+                   #{note},
+                   #{regId},
+                   now(),
+                   null,
+                   null
+               )
+    </insert>
+
+    <insert id="insertBusiness">
+        insert into business
+        values (
+                   #{companyId},
+                   #{seqNo},
+                   #{businessYear},
+                   #{content},
+                   #{regId},
+                   now(),
+                   null,
+                   null
+               )
+    </insert>
+
+    <insert id="insertAbility">
+        insert into ability
+        values(
+                  #{companyId},
+                  #{seqNo},
+                  #{content},
+                  #{regId},
+                  now(),
+                  null,
+                  null
+              )
+    </insert>
+
+    <insert id="insertDepth">
+        insert into company_depth
+        values(
+                  #{companyId},
+                  #{parent},
+                  #{parentSeqNo},
+                  #{seqNo},
+                  #{content},
+                  #{regId},
+                  now(),
+                  null,
+                  null
+              )
+    </insert>
+
+    <delete id="deleteCompany">
+        delete from company where company_id = #{companyId}
+    </delete>
 </mapper>
